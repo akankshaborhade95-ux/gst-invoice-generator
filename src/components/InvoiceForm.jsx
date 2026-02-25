@@ -3,6 +3,7 @@ import PartyDetails from "./PartyDetails";
 import LineItems from "./LineItems";
 import TaxSummary from "./TaxSummary";
 import InvoiceSummary from "./InvoiceSummary";
+import InvoicePreview from "./InvoicePreview";
 import { calculateTax } from "../utils/gstCalculations";
 
 function InvoiceForm() {
@@ -67,6 +68,7 @@ function InvoiceForm() {
       <TaxSummary totals={totals} />
 
       <InvoiceSummary totals={totals} />
+      <InvoicePreview buyer={buyer} items={items} totals={totals} />
 
     </div>
   );
