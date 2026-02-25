@@ -1,19 +1,26 @@
+// InvoiceForm.jsx
 import React, { useState, useEffect } from "react";
 import PartyDetails from "./PartyDetails";
 import LineItems from "./LineItems";
 import TaxSummary from "./TaxSummary";
 import InvoiceSummary from "./InvoiceSummary";
 import InvoicePreview from "./InvoicePreview";
-import { calculateTax } from "../utils/gstCalculations";
 
 function InvoiceForm() {
+  const [seller, setSeller] = useState({
+    company: "",
+    gstin: "",
+    address: "",
+    state: ""
+  });
 
   const [buyer, setBuyer] = useState({
     company: "",
     gstin: "",
     address: "",
     email: "",
-    phone: ""
+    phone: "",
+    state: ""
   });
 
   const [items, setItems] = useState([]);
@@ -27,51 +34,68 @@ function InvoiceForm() {
     grandtotal: 0
   });
 
-
   useEffect(() => {
     calculateTotals();
-  }, [items]);
-
+  }, [items, buyer, seller]);
 
   function calculateTotals() {
+    const subtotal = items.reduce(
+      (sum, item) => sum + (item.quantity || 0) * (item.rate || 0),
+      0
+    );
 
-    let totalValue = 0;
+    const sameState = buyer.state && seller.state && buyer.state === seller.state;
 
-    items.forEach(item => {
-      totalValue += (item.quantity || 0) * (item.rate || 0);
-    });
+    let cgst = 0;
+    let sgst = 0;
+    let igst = 0;
+    const gstRate = 18;
 
-    const tax = calculateTax(totalValue, 18, true);
+    if (sameState) {
+      cgst = (subtotal * gstRate) / 200;
+      sgst = (subtotal * gstRate) / 200;
+    } else {
+      igst = (subtotal * gstRate) / 100;
+    }
+
+    const totalTax = cgst + sgst + igst;
+    const grandTotal = subtotal + totalTax;
 
     setTotals({
-      totalvalue: totalValue,
-      ...tax
+      totalvalue: subtotal,
+      totalcgst: cgst,
+      totalsgst: sgst,
+      totaligst: igst,
+      totaltax: totalTax,
+      grandtotal: grandTotal
     });
   }
 
   return (
-    <div>
+  <div className="invoice-container">
+  <h2>GST Invoice Generator</h2>
 
-      <h2>GST Invoice Generator</h2>
+  <div className="section-box">
+    <PartyDetails title="Seller Details" data={seller} setData={setSeller} />
+  </div>
 
-      <PartyDetails
-        title="Buyer Details"
-        data={buyer}
-        setData={setBuyer}
-      />
+  <div className="section-box">
+    <PartyDetails title="Buyer Details" data={buyer} setData={setBuyer} />
+  </div>
 
-      <LineItems
-        items={items}
-        setItems={setItems}
-      />
+  <div className="section-box">
+    <LineItems items={items} setItems={setItems} />
+  </div>
 
-      <TaxSummary totals={totals} />
+  <div className="section-box">
+    <TaxSummary totals={totals} />
+    <InvoiceSummary totals={totals} />
+  </div>
 
-      <InvoiceSummary totals={totals} />
-      <InvoicePreview buyer={buyer} items={items} totals={totals} />
-
-    </div>
+  <div className="section-box">
+    <InvoicePreview seller={seller} buyer={buyer} items={items} totals={totals} />
+  </div>
+</div>
   );
 }
-
 export default InvoiceForm;
