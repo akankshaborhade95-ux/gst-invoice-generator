@@ -1,4 +1,4 @@
-function PartyDetails({ title, data, setData }) {
+function PartyDetails({ title = "Party Details", data = {}, setData = () => {} }) {
 
   function handleChange(e) {
     setData({
@@ -14,14 +14,14 @@ function PartyDetails({ title, data, setData }) {
       <input
         name="company"
         placeholder="Company"
-        value={data.company}
+        value={data.company || ""}
         onChange={handleChange}
       />
 
       <input
         name="gstin"
         placeholder="GSTIN"
-        value={data.gstin}
+        value={data.gstin || ""}
         onChange={handleChange}
       />
     </div>

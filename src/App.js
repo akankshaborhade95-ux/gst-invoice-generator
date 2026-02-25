@@ -1,12 +1,7 @@
-import react from 'react';
-import InvoiceForm from './components/InvoiceForm.jsx';
+import InvoiceForm from "./components/InvoiceForm";
 
-function App(){
-  return(
-    <div>
-    <InvoiceForm/>
-    </div>
-  )
+function App() {
+  return <InvoiceForm />;
 }
-export default App;
 
+export default App;
