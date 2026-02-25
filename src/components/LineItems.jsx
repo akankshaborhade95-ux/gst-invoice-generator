@@ -4,7 +4,7 @@ function LineItems({ items = [], setItems = () => {} }) {
     setItems([
       ...items,
       { quantity: 1, rate: 0 }
-    ]);
+    ])
   }
 
   function updateItem(index, field, value) {
