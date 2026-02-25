@@ -10,7 +10,7 @@
 }
 
 .section-box {
-  border: 2px solid #8B0000;
+  border: 2px solid #201c1c;
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 20px;
@@ -43,14 +43,14 @@ input {
 }
 button {
   padding: 10px 20px;
-  background-color: #8B0000;
+  background-color: #221f1f;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 button:hover {
-  background-color: #b22222;
+  background-color: #1b1919;
 }
 
 @media print {
