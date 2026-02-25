@@ -1,10 +1,16 @@
-function LineItems({ items = [], setItems = () => {} }) {
+import React from "react";
+
+function LineItems({ items = [], setItems }) {
 
   function addRow() {
     setItems([
       ...items,
-      { quantity: 1, rate: 0 }
-    ])
+      {
+        description: "",
+        quantity: 1,
+        rate: 0
+      }
+    ]);
   }
 
   function updateItem(index, field, value) {
@@ -14,37 +20,80 @@ function LineItems({ items = [], setItems = () => {} }) {
   }
 
   function deleteRow(index) {
-    setItems(items.filter((_, i) => i !== index));
+    const filtered = items.filter((_, i) => i !== index);
+    setItems(filtered);
   }
 
   return (
     <div>
+
       <h3>Items</h3>
 
-      {items.map((item, i) => (
-        <div key={i}>
-          <input
-            type="number"
-            value={item.quantity}
-            onChange={(e) =>
-              updateItem(i, "quantity", Number(e.target.value))
-            }
-          />
+      <table border="1" cellPadding="5">
 
-          <input
-            type="number"
-            value={item.rate}
-            onChange={(e) =>
-              updateItem(i, "rate", Number(e.target.value))
-            }
-          />
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Amount</th>
+            <th>Action</th>
+          </tr>
+        </thead>
 
-          <button onClick={() => deleteRow(i)}>Delete</button>
-        </div>
-      ))}
+        <tbody>
+
+          {items.map((item, i) => (
+            <tr key={i}>
+
+              <td>
+                <input
+                  value={item.description}
+                  onChange={(e) =>
+                    updateItem(i, "description", e.target.value)
+                  }
+                />
+              </td>
+
+              <td>
+                <input
+                  type="number"
+                  value={item.quantity}
+                  onChange={(e) =>
+                    updateItem(i, "quantity", Number(e.target.value))
+                  }
+                />
+              </td>
+
+              <td>
+                <input
+                  type="number"
+                  value={item.rate}
+                  onChange={(e) =>
+                    updateItem(i, "rate", Number(e.target.value))
+                  }
+                />
+              </td>
+
+              <td>
+                {item.quantity * item.rate}
+              </td>
+
+              <td>
+                <button onClick={() => deleteRow(i)}>Delete</button>
+              </td>
+
+            </tr>
+          ))}
+
+        </tbody>
+
+      </table>
 
       <button onClick={addRow}>Add Item</button>
+
     </div>
   );
 }
+
 export default LineItems;

@@ -1,25 +1,30 @@
 import React from "react";
 
 function InvoicePreview({ buyer = {}, items = [], totals = {} }) {
+
   const grandTotal =
     totals.totalvalue +
     totals.totalcgst +
     totals.totalsgst +
     totals.totaligst;
 
+  function handlePrint() {
+    window.print();
+  }
+
   return (
-    <div style={{ marginTop: "30px", border: "1px solid #ccc", padding: "15px" }}>
+    <div style={{ marginTop: "30px", padding: "15px" }}>
+
       <h2>Invoice Preview</h2>
 
       <h3>Buyer Details</h3>
       <p>Company: {buyer.company}</p>
       <p>GSTIN: {buyer.gstin}</p>
 
-      <h3>Items</h3>
-
       <table border="1" cellPadding="5">
         <thead>
           <tr>
+            <th>Name</th>
             <th>Qty</th>
             <th>Rate</th>
             <th>Amount</th>
@@ -29,6 +34,7 @@ function InvoicePreview({ buyer = {}, items = [], totals = {} }) {
         <tbody>
           {items.map((item, i) => (
             <tr key={i}>
+              <td>{item.description}</td>
               <td>{item.quantity}</td>
               <td>{item.rate}</td>
               <td>{item.quantity * item.rate}</td>
@@ -44,6 +50,11 @@ function InvoicePreview({ buyer = {}, items = [], totals = {} }) {
       <p>IGST: {totals.totaligst}</p>
 
       <h2>Grand Total: {grandTotal}</h2>
+
+      <button onClick={handlePrint}>
+        Print Invoice
+      </button>
+
     </div>
   );
 }
