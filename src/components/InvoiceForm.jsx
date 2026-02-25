@@ -13,7 +13,7 @@ function InvoiceForm() {
         email : "",
         phone : ""
     });
-}
+
    const [items, setItems] = useState([]);
   const [totals, setTotals] = useState({
     totalvalue: 0,
@@ -33,13 +33,14 @@ function calculateTotals() {
     items.forEach(item => {
         totalValue += item.quantity * item.rate;
     })
-}
+
      const tax = calculateTax(totalValue, 18, true);
 
     setTotals({
       totalvalue: totalValue,
       ...tax
     });
+} 
     return (
         <div>
             <h2>GST Invoice Generator</h2>
@@ -57,6 +58,5 @@ function calculateTotals() {
 
         </div>
     );
+}
 export default InvoiceForm;
-
-  
