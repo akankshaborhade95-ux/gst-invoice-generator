@@ -7,8 +7,8 @@ function LineItems({ items = [], setItems }) {
       ...items,
       {
         description: "",
-        quantity: 1,
-        rate: 0
+        quantity: "",
+        rate: ""
       }
     ]);
   }
