@@ -1,26 +1,26 @@
-import React from "react";
-
-function InvoicePreview({ buyer = {}, items = [], totals = {} }) {
+function InvoicePreview({ seller, buyer, items, totals }) {
 
   const grandTotal =
-    totals.totalvalue +
-    totals.totalcgst +
-    totals.totalsgst +
-    totals.totaligst;
-
-  function handlePrint() {
-    window.print();
-  }
+    totals.totalvalue + totals.totalcgst + totals.totalsgst + totals.totaligst;
 
   return (
     <div style={{ marginTop: "30px", padding: "15px" }}>
-
       <h2>Invoice Preview</h2>
+
+      <h3>Seller Details</h3>
+      <p>Company: {seller.company}</p>
+      <p>GSTIN: {seller.gstin}</p>
+      <p>Address: {seller.address}</p>
+      <p>State: {seller.state}</p>
 
       <h3>Buyer Details</h3>
       <p>Company: {buyer.company}</p>
       <p>GSTIN: {buyer.gstin}</p>
+      <p>Address: {buyer.address}</p>
+      <p>Email: {buyer.email}</p>
+      <p>Phone: {buyer.phone}</p>
 
+      <h3>Items</h3>
       <table border="1" cellPadding="5">
         <thead>
           <tr>
@@ -30,7 +30,6 @@ function InvoicePreview({ buyer = {}, items = [], totals = {} }) {
             <th>Amount</th>
           </tr>
         </thead>
-
         <tbody>
           {items.map((item, i) => (
             <tr key={i}>
@@ -51,10 +50,7 @@ function InvoicePreview({ buyer = {}, items = [], totals = {} }) {
 
       <h2>Grand Total: {grandTotal}</h2>
 
-      <button onClick={handlePrint}>
-        Print Invoice
-      </button>
-
+      <button onClick={() => window.print()}>Print Invoice</button>
     </div>
   );
 }

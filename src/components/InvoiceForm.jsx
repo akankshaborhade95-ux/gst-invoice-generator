@@ -1,11 +1,11 @@
-// InvoiceForm.jsx
+
 import React, { useState, useEffect } from "react";
 import PartyDetails from "./PartyDetails";
 import LineItems from "./LineItems";
 import TaxSummary from "./TaxSummary";
 import InvoiceSummary from "./InvoiceSummary";
 import InvoicePreview from "./InvoicePreview";
-
+import "./Invoiceform.css";
 function InvoiceForm() {
   const [seller, setSeller] = useState({
     company: "",
