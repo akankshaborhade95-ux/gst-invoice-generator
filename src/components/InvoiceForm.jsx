@@ -39,38 +39,38 @@ function InvoiceForm() {
   }, [items, buyer, seller]);
 
   function calculateTotals() {
-    const subtotal = items.reduce(
-      (sum, item) => sum + (item.quantity || 0) * (item.rate || 0),
-      0
-    );
 
-    const sameState = buyer.state && seller.state && buyer.state === seller.state;
+  let subtotal = 0;
 
-    let cgst = 0;
-    let sgst = 0;
-    let igst = 0;
-    const gstRate = 18;
+  items.forEach(item => {
+    const qty = Number(item.quantity) || 0;
+    const rate = Number(item.rate) || 0;
 
-    if (sameState) {
-      cgst = (subtotal * gstRate) / 200;
-      sgst = (subtotal * gstRate) / 200;
-    } else {
-      igst = (subtotal * gstRate) / 100;
-    }
+    subtotal += qty * rate;
+  });
+  const gstRate = 18;
+  let cgst = 0;
+  let sgst = 0;
+  let igst = 0;
+  if (buyer.state === seller.state) {
+    cgst = subtotal * gstRate / 2 / 100;
+    sgst = subtotal * gstRate / 2 / 100;
 
-    const totalTax = cgst + sgst + igst;
-    const grandTotal = subtotal + totalTax;
-
-    setTotals({
-      totalvalue: subtotal,
-      totalcgst: cgst,
-      totalsgst: sgst,
-      totaligst: igst,
-      totaltax: totalTax,
-      grandtotal: grandTotal
-    });
+  } else {
+    igst = subtotal * gstRate / 100;
   }
+  const totalTax = cgst + sgst + igst;
+  const grandTotal = subtotal + totalTax;
 
+  setTotals({
+    totalvalue: subtotal,
+    totalcgst: cgst,
+    totalsgst: sgst,
+    totaligst: igst,
+    totaltax: totalTax,
+    grandtotal: grandTotal
+  });
+}
   return (
   <div className="invoice-container">
   <h2>GST Invoice Generator</h2>
