@@ -1,7 +1,5 @@
 import React from "react";
-
 function LineItems({ items = [], setItems }) {
-
   function addRow() {
     setItems([
       ...items,

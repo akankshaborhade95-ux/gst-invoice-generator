@@ -19,6 +19,7 @@ function InvoicePreview({ seller, buyer, items, totals }) {
       <p>Address: {buyer.address}</p>
       <p>Email: {buyer.email}</p>
       <p>Phone: {buyer.phone}</p>
+      <p>State: {buyer.state}</p>
 
       <h3>Items</h3>
       <table border="1" cellPadding="5">
