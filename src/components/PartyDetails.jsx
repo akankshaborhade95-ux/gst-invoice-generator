@@ -48,13 +48,13 @@ function PartyDetails({ title, data = {}, setData }) {
     <div>
       <h3>{title}</h3>
 
-      <input
-        name="company"
-        placeholder="Company"
-        value={data.company || ""}
-        onChange={handleChange}
-      />
+      <div className="form-group">
+  <label>Company Name</label>
+  <input name="company" />
+     </div>
 
+     <div className="form-group">
+      <label> GSTIN NO</label>
       <input
         name="gstin"
         placeholder="GSTIN"
@@ -62,7 +62,10 @@ function PartyDetails({ title, data = {}, setData }) {
         onChange={handleChange}
       />
       {errors.gstin && <p style={{ color: "red" }}>{errors.gstin}</p>}
+       </div>
 
+      <div className="form-group">
+      <label>Email</label>
       <input
         name="email"
         placeholder="Email"
@@ -70,7 +73,10 @@ function PartyDetails({ title, data = {}, setData }) {
         onChange={handleChange}
       />
       {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+       </div>
 
+       <div className="form-group">
+        <label>Phone No.</label>
       <input
         name="phone"
         placeholder="Phone"
@@ -78,14 +84,20 @@ function PartyDetails({ title, data = {}, setData }) {
         onChange={handleChange}
       />
       {errors.phone && <p style={{ color: "red" }}>{errors.phone}</p>}
+         </div>
 
+         <div className="form-group">
+          <label> Address</label>
       <input
         name="address"
         placeholder="Address"
         value={data.address || ""}
         onChange={handleChange}
       />
+        </div>
 
+        <div className="form-group">
+          <label>State</label>
       <select
         name="state"
         value={data.state || ""}
@@ -98,6 +110,7 @@ function PartyDetails({ title, data = {}, setData }) {
           </option>
         ))}
       </select>
+      </div>
     </div>
   );
 }
