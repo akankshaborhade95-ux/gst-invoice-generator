@@ -13,9 +13,3 @@ Features:
 6.IGST for different state
 7.Invoice preview
 8.Print only invoice (not form)
-
- Run Project:
- 1.Install packages:
-   npm install
- 2.Start app
-   npm start (http://localhost:3000)
