@@ -45,73 +45,78 @@ function PartyDetails({ title, data = {}, setData }) {
   }
 
   return (
-    <div>
+    <div className="party-box">
       <h3>{title}</h3>
 
-      <div className="form-group">
-  <label>Company Name</label>
-  <input name="company" />
-     </div>
+      <div className="form-group full">
+        <label>Company Name</label>
+        <input
+          name="company"
+          value={data.company || ""}
+          onChange={handleChange}
+        />
+      </div>
 
-     <div className="form-group">
-      <label> GSTIN NO</label>
-      <input
-        name="gstin"
-        placeholder="GSTIN"
-        value={data.gstin || ""}
-        onChange={handleChange}
-      />
-      {errors.gstin && <p style={{ color: "red" }}>{errors.gstin}</p>}
-       </div>
+      <div className="form-group full">
+        <label>Address</label>
+        <input
+          name="address"
+          value={data.address || ""}
+          onChange={handleChange}
+        />
+      </div>
 
-      <div className="form-group">
-      <label>Email</label>
-      <input
-        name="email"
-        placeholder="Email"
-        value={data.email || ""}
-        onChange={handleChange}
-      />
-      {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-       </div>
-
-       <div className="form-group">
-        <label>Phone No.</label>
-      <input
-        name="phone"
-        placeholder="Phone"
-        value={data.phone || ""}
-        onChange={handleChange}
-      />
-      {errors.phone && <p style={{ color: "red" }}>{errors.phone}</p>}
-         </div>
-
-         <div className="form-group">
-          <label> Address</label>
-      <input
-        name="address"
-        placeholder="Address"
-        value={data.address || ""}
-        onChange={handleChange}
-      />
+      <div className="row">
+        <div className="form-group half">
+          <label>GSTIN</label>
+          <input
+            name="gstin"
+            value={data.gstin || ""}
+            onChange={handleChange}
+          />
+          {errors.gstin && <p className="error">{errors.gstin}</p>}
         </div>
 
-        <div className="form-group">
+        <div className="form-group half">
           <label>State</label>
-      <select
-        name="state"
-        value={data.state || ""}
-        onChange={handleChange}
-      >
-        <option value="">Select State</option>
-        {states.map((s, i) => (
-          <option key={i} value={s.name}>
-            {s.name}
-          </option>
-        ))}
-      </select>
+          <select
+            name="state"
+            value={data.state || ""}
+            onChange={handleChange}
+          >
+            <option value="">Select State</option>
+            {states.map((s, i) => (
+              <option key={i} value={s.name}>
+                {s.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="form-group half">
+          <label>Email</label>
+          <input
+            name="email"
+            value={data.email || ""}
+            onChange={handleChange}
+          />
+          {errors.email && <p className="error">{errors.email}</p>}
+        </div>
+
+        <div className="form-group half">
+          <label>Phone No.</label>
+          <input
+            name="phone"
+            value={data.phone || ""}
+            onChange={handleChange}
+          />
+          {errors.phone && <p className="error">{errors.phone}</p>}
+        </div>
       </div>
     </div>
   );
 }
+
 export default PartyDetails;

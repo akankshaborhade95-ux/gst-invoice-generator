@@ -145,3 +145,32 @@ button:hover {
     display: none;
   }
 }
+.row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.full {
+  width: 100%;
+}
+
+.half {
+  flex: 1;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
