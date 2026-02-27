@@ -1,14 +1,12 @@
-
 .invoice-container {
   max-width: 1000px;
   margin: auto;
   padding: 20px;
   font-family: Arial, sans-serif;
-  background-color: #638d67;
+  background-color: #7cba82;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-
 .section-box {
   border: 2px solid #201c1c;
   border-radius: 10px;
@@ -22,18 +20,29 @@
   gap: 20px;
 }
 
+.party-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+.party-box {
+  width: 50%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+}
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
 }
-
-table th, table td {
+table th,
+table td {
   border: 1px solid #ccc;
   padding: 10px;
   text-align: center;
 }
-
 input {
   width: 100%;
   padding: 8px;
@@ -41,6 +50,7 @@ input {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+
 button {
   padding: 10px 20px;
   background-color: #221f1f;
@@ -52,8 +62,20 @@ button {
 button:hover {
   background-color: #1b1919;
 }
-
 @media print {
+  body * {
+    visibility: hidden;
+  }
+  .invoice-preview,
+  .invoice-preview * {
+    visibility: visible;
+  }
+  .invoice-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
   button {
     display: none;
   }

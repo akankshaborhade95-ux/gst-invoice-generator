@@ -1,4 +1,4 @@
-const states = [
+ export const states = [
   { name: "Maharashtra", code: "27" },
   { name: "Gujarat", code: "24" },
   { name: "Karnataka", code: "29" },
