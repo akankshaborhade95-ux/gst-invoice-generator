@@ -1,75 +1,86 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #799abe, #fdfbfb);
+
+  background: linear-gradient(135deg, #899ac2, #65aeb8);
 }
 
 .invoice-container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 40px auto;
-  padding: 30px;
+  padding: 35px;
   background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .invoice-container h2 {
   text-align: center;
-  margin-bottom: 30px;
-  color: #2b2b2b;
+  margin-bottom: 35px;
+  color: #222;
+  letter-spacing: 1px;
 }
 
 .section-box {
   border: 2px solid black;
-  padding: 20px;
-  margin-bottom: 20px;
-  background-color: white;
-  border-radius: 6px;
+  background: #ffffff;
+  padding: 22px;
+  margin-bottom: 22px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
 .section-box h3 {
-  margin-bottom: 12px;
-  color: #3c3c3c;
+  margin-bottom: 15px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e6e6e6;
+  color: #333;
 }
 
 .party-row {
   display: flex;
-  gap: 30px;
+  gap: 25px;
 }
 
 .party-box {
   flex: 1;
-  background: #ffffff;
+  border: 2px solid black;
+  background: #fafafa;
   padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #0b0a0a;
+  border-radius: 8px;
 }
+.party-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
 input,
 select {
-  width: 80%;
+  width: 100%;
   padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background: #fff;
 }
 
 input:focus,
 select:focus {
-  border-color: #4c84ff;
-  box-shadow: 0 0 0 2px rgba(76, 132, 255, 0.15);
+  outline: none;
+  border-color: #768cc1;
+  box-shadow: 0 0 4px rgba(147, 162, 199, 0.3);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 15px;
   background: white;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
 table th {
-  background: #4c84ff;
+  background: #5e6e94;
   color: white;
   padding: 12px;
   font-weight: 600;
@@ -77,34 +88,40 @@ table th {
 
 table td {
   padding: 10px;
-  border-bottom: 1px solid #0d0c0c;
+  border: 1px solid #ddd;
   text-align: center;
 }
 
 table tr:nth-child(even) {
-  background: #f6f8ff;
+  background: #f3f6ff;
 }
 
 button {
   padding: 10px 18px;
-  background: #4c84ff;
+  background: black;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 button:hover {
-  background: #3768d8;
-  transform: translateY(-1px);
+  background: #333;
+  transform: scale(1.03);
 }
 
 .invoice-preview {
+  border: 2px solid black;
   background: white;
   padding: 25px;
-  border-radius: 12px;
+  border-radius: 10px;
+}
+
+.invoice-preview h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 @media print {

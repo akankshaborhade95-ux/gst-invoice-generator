@@ -7,13 +7,13 @@ function InvoicePreview({ seller, buyer, items, totals }) {
 
       <div className="party-row">
   <div className="party-box">
-    <h3>Seller Details</h3>
+    <h3> Seller Details</h3>
     <p>Company: {seller.company}</p>
     <p>GSTIN: {seller.gstin}</p>
     <p>Address: {seller.address}</p>
-    <p>State: {seller.state}</p>
     <p>Email: {seller.email}</p>
     <p>Phone: {seller.phone}</p>
+    <p>State: {seller.state}</p>
   </div>
   <div className="party-box">
     <h3>Buyer Details</h3>
